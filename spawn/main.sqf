@@ -172,7 +172,7 @@ if (count class_choice == 13) then {
 	halo_selection = false;
 	halo_force = false;
 	_grid = class_choice select 12;
-}
+};
 
 if (spawn_selection) then {
 	dayz_spawnselection = 1; //Set on now, so journal shows correct value
