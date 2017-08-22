@@ -172,6 +172,18 @@ if (count class_choice == 13) then {
 	halo_selection = false;
 	halo_force = false;
 	_grid = class_choice select 12;
+	if (surfaceIsWater _grid) then {_grid = ATLToASL _grid;};
+		
+	for "_i" from 0 to 99 do {
+		_pos = [_grid,0,spawn_radius,10,0,2000,0] call BIS_fnc_findSafePos;
+		_pos set [2,0];
+		if (
+			((ATLtoASL _pos) select 2) > 2.5
+			&& {(_pos distance _grid) < spawn_radius}
+			&& {({isPlayer _x} count (_pos nearEntities ["CAManBase",100])) == 0}
+			&& {count (_pos nearEntities ["Plastic_Pole_EP1_DZ",45]) == 0}
+		) exitWith {_grid = _pos;};
+	};
 };
 
 if (spawn_selection) then {
