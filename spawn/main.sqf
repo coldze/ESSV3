@@ -78,6 +78,7 @@ if (class_selection && !_isPZombie) then {
 		_onBack = switch true do {
 			case (count class_choice == 10): {class_choice select 9}; //Custom loadout by UID
 			case (count class_choice == 12): {class_choice select 11}; //Normal private or public
+			case (count class_choice == 13): {class_choice select 11}; //New type
 			default {""}; //Not specified, may be V2 config
 		};
 	
@@ -165,6 +166,13 @@ if (class_selection && !_isPZombie) then {
 		player setVariable [Z_MoneyVariable,(_wealth + _coins),true];
 	};
 };
+
+if (count class_choice == 13) then {
+	spawn_selection = false;
+	halo_selection = false;
+	halo_force = false;
+	_grid = class_choice select 12;
+}
 
 if (spawn_selection) then {
 	dayz_spawnselection = 1; //Set on now, so journal shows correct value
